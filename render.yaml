@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: vg-release-checklist
+    runtime: node
+    region: oregon
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATA_DIR
+        value: /data
+    disk:
+      name: app-data
+      mountPath: /data
+      sizeGB: 1
